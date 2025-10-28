@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/prafullakinkar2025/public_html/
-    - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
