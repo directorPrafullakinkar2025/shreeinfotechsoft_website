@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/shreeinfotechsof/public_html/
-    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp -R * $DEPLOYPATH
