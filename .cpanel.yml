@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/prafullakinkar2025/public_html/
+    - export DEPLOYPATH=/home/shreeinfotechsof/public_html/
     - /bin/cp index.php $DEPLOYPATH
