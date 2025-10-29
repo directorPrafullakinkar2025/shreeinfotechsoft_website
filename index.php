@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  <div class="services-section">
     <h2>Our Services</h2>
     <div class="services-container">
-      <!-- <div class="service-item">Online platform for agriculture product sales and purchase</div> -->
+      <div class="service-item">Online platform for agriculture product sales and purchase</div>
         <div class="service-item">Educational portal for student learning and skill development</div>
         <div class="service-item">Custom software development and IT solutions</div>
     </div>
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="project-card">
         <img src="Farmeasy.jpg" alt="Agriculture Marketplace">
         <div class="project-content">
-          <div class="service-item">Online platform for agriculture product sales and purchase</div>
+          
           <h3>Agricultural Marketplace</h3>
           <p>FarmEasy is an e-commerce platform designed to empower farmers by providing bio-chemicals and agricultural
             supplies directly from verified suppliers. It eliminates middlemen, ensuring affordable pricing, product
