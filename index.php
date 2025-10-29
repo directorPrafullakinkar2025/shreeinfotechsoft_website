@@ -88,18 +88,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
  <div class="services-section">
     <h2>Our Services</h2>
-    <div class="services-container">
+    <!-- <div class="services-container">
       <div class="service-item">Online platform for agriculture product sales and purchase</div>
         <div class="service-item">Educational portal for student learning and skill development</div>
         <div class="service-item">Custom software development and IT solutions</div>
-    </div>
+    </div> -->
 </div>
 
     <div class="project-container">
       <div class="project-card">
+        <div class="service-item">Online platform for agriculture product sales and purchase</div>
         <img src="Farmeasy.jpg" alt="Agriculture Marketplace">
         <div class="project-content">
-          
           <h3>Agricultural Marketplace</h3>
           <p>FarmEasy is an e-commerce platform designed to empower farmers by providing bio-chemicals and agricultural
             supplies directly from verified suppliers. It eliminates middlemen, ensuring affordable pricing, product
@@ -108,6 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
 
       <div class="project-card">
+        <div class="service-item">Educational portal for student learning and skill development</div>
         <img src="edu.webp" alt="Education Portal">
         <div class="project-content">
           <h3>Education Portal</h3>
@@ -118,6 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
 
       <div class="project-card">
+         <div class="service-item">Custom software development and IT solutions</div>
         <img src="surv.jpg" alt="Smart Surveillance">
         <div class="project-content">
           <h3>Surveillance Camera</h3>
