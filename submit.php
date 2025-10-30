@@ -24,10 +24,10 @@ $email = $_POST['email'];
 $mobile_no = $_POST['mobile_no'];
 $course = $_POST['course'];
 $training_mode = $_POST['training_mode'];
-$message = $_POST['message'];
+$message = $_POST['msg'];
 
 // Prepare SQL query
-$sql = "INSERT INTO company_info (full_name, email, mobile_no, course, training_mode, message)
+$sql = "INSERT INTO company_info (full_name, email, mobile_no, course, training_mode, msg)
         VALUES ('$full_name', '$email', '$mobile_no', '$course', '$training_mode', '$message')";
 
 // Execute and check

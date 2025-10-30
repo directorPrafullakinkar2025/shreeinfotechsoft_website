@@ -251,7 +251,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option value="offline">Offline</option>
             </select>
           </div>
-          <textarea name="message" id="message" placeholder="Describe message here"></textarea>
+          <textarea name="msg" id="message" placeholder="Describe message here"></textarea>
           <button type="submit">Submit</button>
         </form>
       </div>
