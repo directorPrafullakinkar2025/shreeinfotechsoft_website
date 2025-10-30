@@ -229,7 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
       <div class="right">
         <h2>Start Your Learning Journey Today!</h2>
-        <form method="POST" action="">
+        <form method="POST" action="submit.php">
           <div class="row">
             <input type="text" name="full_name" placeholder="Full Name">
             <input type="text" name="email" placeholder="Email-ID">
