@@ -34,7 +34,8 @@ $sql = "INSERT INTO company_info (full_name, email, mobile_no, course, training_
 
 // Execute and check
 if ($conn->query($sql) === TRUE) {
-    echo "✅ Data submitted successfully!";
+    header("Location: index.php");
+exit();
 } else {
     echo "❌ Error: " . $sql . "<br>" . $conn->error;
 }
