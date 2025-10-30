@@ -234,7 +234,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" name="full_name" placeholder="Full Name">
             <input type="text" name="email" placeholder="Email-ID">
           </div>
-          <input type="text" name="mobile_number" placeholder="Mobile No">
+          <input type="text" name="mobile_no" placeholder="Mobile No">
           <div class="row">
             <select name="course">
               <option value="">Choose Course</option>
@@ -251,7 +251,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option value="offline">Offline</option>
             </select>
           </div>
-          <textarea name="msg" id="message" placeholder="Describe message here"></textarea>
+          <textarea name="message" id="message" placeholder="Describe message here"></textarea>
           <button type="submit">Submit</button>
         </form>
       </div>
