@@ -52,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <title>ShreeInfotech Software Development Pvt. Ltd.</title>
   <meta name="description" content="ShreeInfotech Software Development Private Limited – empowering farmers and students with digital solutions for agriculture and education." />
   <link rel="stylesheet" href="style.css">
-  
+  <!-- intl-tel-input CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
 
 </head>
 
@@ -239,9 +240,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="row">
             <!-- <span class="pin-no">+91</span>
           <input type="text" name="mobile_no" placeholder="Mobile No"> -->
-          <!-- <input id="mobile_no" type="tel" name="mobile_no" required> -->
-           <select name="mobile_no" id="mobile_no"></select>
-          <input type="text" name="email" placeholder="Email-ID"><br><br>
+          <input id="mobile_no" type="tel" name="mobile_no" required>
+          <input type="text" name="email" placeholder="Email-ID">
           </div>
           <div class="row">
             <select name="course">
@@ -340,7 +340,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 document.getElementById("contactForm").addEventListener("submit", async function(e) {
     e.preventDefault(); // stop normal form submission
-
+    
     let mobile = document.getElementById("mobile").value.trim();
     let email = document.getElementById("email").value.trim();
     let message = document.getElementById("message").value.trim();
@@ -396,43 +396,16 @@ document.getElementById("contactForm").addEventListener("submit", async function
 });
 </script>
 
-<script>
-    const countries = [
-      { name: "Afghanistan", code: "+93", flag: "🇦🇫" },
-      { name: "Albania", code: "+355", flag: "🇦🇱" },
-      { name: "Algeria", code: "+213", flag: "🇩🇿" },
-      { name: "Argentina", code: "+54", flag: "🇦🇷" },
-      { name: "Australia", code: "+61", flag: "🇦🇺" },
-      { name: "Bangladesh", code: "+880", flag: "🇧🇩" },
-      { name: "Brazil", code: "+55", flag: "🇧🇷" },
-      { name: "Canada", code: "+1", flag: "🇨🇦" },
-      { name: "China", code: "+86", flag: "🇨🇳" },
-      { name: "France", code: "+33", flag: "🇫🇷" },
-      { name: "Germany", code: "+49", flag: "🇩🇪" },
-      { name: "India", code: "+91", flag: "🇮🇳" },
-      { name: "Indonesia", code: "+62", flag: "🇮🇩" },
-      { name: "Italy", code: "+39", flag: "🇮🇹" },
-      { name: "Japan", code: "+81", flag: "🇯🇵" },
-      { name: "Mexico", code: "+52", flag: "🇲🇽" },
-      { name: "Nepal", code: "+977", flag: "🇳🇵" },
-      { name: "Pakistan", code: "+92", flag: "🇵🇰" },
-      { name: "Russia", code: "+7", flag: "🇷🇺" },
-      { name: "Saudi Arabia", code: "+966", flag: "🇸🇦" },
-      { name: "South Africa", code: "+27", flag: "🇿🇦" },
-      { name: "Sri Lanka", code: "+94", flag: "🇱🇰" },
-      { name: "United Arab Emirates", code: "+971", flag: "🇦🇪" },
-      { name: "United Kingdom", code: "+44", flag: "🇬🇧" },
-      { name: "United States", code: "+1", flag: "🇺🇸" }
-    ];
+  <!-- intl-tel-input JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
-    const select = document.getElementById('countrySelect');
-    countries.forEach(c => {
-      const option = document.createElement('option');
-      option.value = c.code;
-      option.textContent = `${c.flag} ${c.name} (${c.code})`;
-      select.appendChild(option);
+  <script>
+    const phoneInputField = document.querySelector("#mobile_no");
+    window.intlTelInput(phoneInputField, {
+      initialCountry: "in", // Default: India
+      preferredCountries: ["in", "us", "gb"], // top 3
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
     });
   </script>
-
 </body>
 </html>
