@@ -632,12 +632,15 @@
 
      input,
      select,
-     textarea {
+     textarea{
          width: 100%;
          padding: 12px;
          border: 1px solid #ddd;
          border-radius: 8px;
          font-size: 15px;
+     }
+     .pin-no{
+        margin-top: 10px;
      }
 
      textarea {
@@ -872,9 +875,11 @@
          nav ul {
              position: absolute;
              top: 85px;
-             width: 100%;
+             width: 50%;
+             display: flex;
              flex-direction: column;
-             text-align: left;
+             margin-left: 50%;
+             text-align: right;
              gap: 20px;
              padding: 0px 20px;
              display: none;
