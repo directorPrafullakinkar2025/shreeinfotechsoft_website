@@ -5,10 +5,10 @@ $username = "shreeinfotechsof";       // or your cPanel DB username
 $password = ",oSjcFMm,Rg;";           // or your DB password
 $database = "shreeinfotechsof_company_info";
 //local connection
-$servername = "localhost";
-$username = "root";       // or your cPanel DB username
-$password = "";           // or your DB password
-$database = "shreeinfotechsof_company_info";
+// $servername = "localhost";
+// $username = "root";       // or your cPanel DB username
+// $password = "";           // or your DB password
+// $database = "shreeinfotechsof_company_info";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
