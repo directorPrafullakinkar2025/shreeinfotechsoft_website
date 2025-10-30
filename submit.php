@@ -1,6 +1,11 @@
 <?php
 // Database connection details
 $servername = "localhost";
+$username = "shreeinfotechsof";       // or your cPanel DB username
+$password = ",oSjcFMm,Rg;";           // or your DB password
+$database = "shreeinfotechsof_company_info";
+//local connection
+$servername = "localhost";
 $username = "root";       // or your cPanel DB username
 $password = "";           // or your DB password
 $database = "shreeinfotechsof_company_info";
