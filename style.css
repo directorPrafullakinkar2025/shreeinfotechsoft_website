@@ -652,7 +652,8 @@
          border: none;
          border-radius: 8px;
          cursor: pointer;
-         transition: 0.3s;
+         transition: color 0.5s ease;
+         ;
          font-size: 16px;
      }
 
@@ -870,28 +871,40 @@
 
          nav ul {
              position: absolute;
-             top: 83px;
+             top: 85px;
              width: 100%;
              flex-direction: column;
-             text-align: center;
+             text-align: left;
              gap: 20px;
              padding: 0px 20px;
              display: none;
-             background: rgba(0, 30, 80, 0.75);
-             backdrop-filter: blur(10px);
-             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+             background: rgba(0, 30, 80, 0.9);
+             box-shadow: 0 8px 20px rgb(0, 0, 0);
              border-radius: 0 0 20px 20px;
          }
 
-         .menu-toggle {
-             display: block;
+         nav ul li {
+             border-bottom: 1px solid #e5e5e5;
+             padding: 10px 10px;
+         }
+         nav ul li:first-child{
+            padding-top: 20px;
+         }
 
+         .menu-toggle {
+             background: #007bff;
+             border: none;
+             color: white;
+             /* font-size: 26px; */
+             border-radius: 6px;
+             cursor: pointer;
+             padding: 15px 15px;
+             display: block;
          }
 
          .nav-links.active {
              display: flex;
          }
-
 
 
 
