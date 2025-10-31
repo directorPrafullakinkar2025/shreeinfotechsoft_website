@@ -1,48 +1,4 @@
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect form data safely
-    $full_name = htmlspecialchars($_POST['full_name']);
-    $email = htmlspecialchars($_POST['email']);
-    $mobile_number = htmlspecialchars($_POST['mobile_number']);
-    $course = htmlspecialchars($_POST['course']);
-    $training_mode = htmlspecialchars($_POST['training_mode']);
-    $message = htmlspecialchars($_POST['message']);
 
-    // ✅ Step 1: Database connection
-    $servername = "localhost";   // your host
-    $username = "root";          // default for XAMPP
-    $password = "";              // default empty for XAMPP
-    $dbname = "company_info";    // your database name
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("❌ Connection failed: " . $conn->connect_error);
-    }
-
-    // ✅ Step 2: Insert query with mobile number
-    $sql = "INSERT INTO company_info (full_name, email, mobile_number, course, training_mode, message)
-            VALUES (?, ?, ?, ?, ?, ?)";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssss", $full_name, $email, $mobile_number, $course, $training_mode, $message);
-
-    if ($stmt->execute()) {
-        // echo "<h3>✅ Form Submitted & Data Saved Successfully!</h3>";
-        // echo "<p><strong>Name:</strong> $full_name</p>";
-        // echo "<p><strong>Email:</strong> $email</p>";
-        // echo "<p><strong>Mobile:</strong> $mobile_number</p>";
-        // echo "<p><strong>Course:</strong> $course</p>";
-        // echo "<p><strong>Training Mode:</strong> $training_mode</p>";
-        // echo "<p><strong>Message:</strong> $message</p>";
-    } else {
-        echo "❌ Error: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -232,19 +188,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
       <div class="right">
         <h2>Start Your Learning Journey Today!</h2>
-        <form method="POST" action="submit.php">
+        <form id="contactForm" method="POST" action="submit.php">
           <div class="row">
-            <input type="text" name="first_name" placeholder="First Name">
-            <input type="text" name="last_name" placeholder="Last Name">
+            <input id="first_name" type="text" name="first_name" placeholder="First Name">
+            <input id="last_name" type="text" name="last_name" placeholder="Last Name">
           </div>
           <div class="row">
             <!-- <span class="pin-no">+91</span>
           <input type="text" name="mobile_no" placeholder="Mobile No"> -->
-          <input id="mobile_no" type="tel" name="mobile_no" required>
-          <input type="text" name="email" placeholder="Email-ID">
+          <input id="mobile_no" type="tel" name="mobile_no" maxlength="10" pattern="\d{10}" required>
           </div>
+          <input id="email" type="text" name="email" placeholder="Email-ID">
           <div class="row">
-            <select name="course">
+            <select name="course" id="course">
               <option value="">Choose Course</option>
               <option value="Java">Java Full Stack</option>
               <option value="MERN">MERN Full Stack</option>
@@ -253,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option value="Javascript">Javascript</option>
               <option value="PHP">PHP</option>
             </select>
-            <select name="training_mode">
+            <select name="training_mode" id="training_mode">
               <option value="">Select Mode of Training</option>
               <option value="online">Online</option>
               <option value="offline">Offline</option>
@@ -261,6 +217,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           <textarea name="message" id="message" placeholder="Describe message here"></textarea>
           <button type="submit">Submit</button>
+
+  <div id="errorMsg" style="color:red; margin-top:10px;"></div>
+  <div id="successMsg" style="color:green; margin-top:10px;"></div>
         </form>
       </div>
     </div>
@@ -330,18 +289,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </footer>
 
-<script>
-  const menuToggle = document.querySelector('.menu-toggle');
+  <!-- intl-tel-input JS -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script> -->
+
+  <!-- <script>
+
+      const menuToggle = document.querySelector('.menu-toggle');
   const navLink = document.querySelector('.nav-links');
 
   menuToggle.addEventListener('click',()=>{
     navLink.classList.toggle('active')
   })
 
+    const phoneInputField = document.querySelector("#mobile_no");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      initialCountry: "in", // Default: India
+      preferredCountries: ["in", "us", "gb"], // top 3
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+
+
 document.getElementById("contactForm").addEventListener("submit", async function(e) {
     e.preventDefault(); // stop normal form submission
-    
-    let mobile = document.getElementById("mobile").value.trim();
+
+     let fullNumber = phoneInput.getNumber(); // e.g. +919876543210
+    // let mobile = document.getElementById("mobile").value.trim();
     let email = document.getElementById("email").value.trim();
     let message = document.getElementById("message").value.trim();
     let errorMsg = document.getElementById("errorMsg");
@@ -350,8 +323,8 @@ document.getElementById("contactForm").addEventListener("submit", async function
     successMsg.textContent = "";
 
     // ✅ Validate mobile number
-    let mobilePattern = /^[0-9]{10}$/;
-    if (!mobilePattern.test(mobile)) {
+let mobilePattern = /^\+?[0-9]{10,15}$/;
+    if (!mobilePattern.test(fullNumber)) {
         errorMsg.textContent = "Please enter a valid 10-digit mobile number.";
         return;
     }
@@ -380,7 +353,7 @@ document.getElementById("contactForm").addEventListener("submit", async function
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams({
-                mobile: mobile,
+                mobile_no: fullNumber,
                 email: email,
                 message: message
             })
@@ -394,18 +367,76 @@ document.getElementById("contactForm").addEventListener("submit", async function
         errorMsg.textContent = "Error sending data. Please try again.";
     }
 });
+</script> -->
+<!-- intl-tel-input JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+<script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navLink = document.querySelector('.nav-links');
+menuToggle.addEventListener('click', () => {
+  navLink.classList.toggle('active');
+});
+
+// Initialize phone input with country dropdown
+const phoneInputField = document.querySelector("#mobile_no");
+const phoneInput = window.intlTelInput(phoneInputField, {
+  initialCountry: "in", // Default: India
+  preferredCountries: ["in", "us", "gb"],
+  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+
+document.getElementById("contactForm").addEventListener("submit", async function (e) {
+  e.preventDefault(); // Stop normal form submission
+
+  const fullNumber = phoneInput.getNumber(); // e.g. +919876543210
+  const data = {
+    first_name: document.getElementById("first_name").value.trim(),
+    last_name: document.getElementById("last_name").value.trim(),
+    mobile_no: fullNumber,
+    email: document.getElementById("email").value.trim(),
+    course: document.getElementById("course").value,
+    training_mode: document.getElementById("training_mode").value,
+     message: document.getElementById("message").value.trim() 
+  };
+
+  const errorMsg = document.getElementById("errorMsg");
+  const successMsg = document.getElementById("successMsg");
+  errorMsg.textContent = "";
+  successMsg.textContent = "";
+
+  // ✅ Validate mobile number
+  const mobilePattern = /^\+?[0-9]{10,15}$/;
+  if (!mobilePattern.test(data.mobile_no)) {
+    errorMsg.textContent = "Please enter a valid mobile number.";
+    return;
+  }
+
+  // ✅ Validate email format
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+  if (!emailPattern.test(data.email)) {
+    errorMsg.textContent = "Please enter a valid email address.";
+    return;
+  }
+
+  // ✅ Send data to submit.php
+  try {
+    const response = await fetch("submit.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(data)
+    });
+
+   // Redirect handled by PHP, no message needed
+window.location.href = "index.php";
+
+    document.getElementById("contactForm").reset();
+  } catch (error) {
+    errorMsg.textContent = "Error sending data. Please try again.";
+  }
+});
 </script>
 
-  <!-- intl-tel-input JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
-  <script>
-    const phoneInputField = document.querySelector("#mobile_no");
-    window.intlTelInput(phoneInputField, {
-      initialCountry: "in", // Default: India
-      preferredCountries: ["in", "us", "gb"], // top 3
-      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-  </script>
 </body>
 </html>
