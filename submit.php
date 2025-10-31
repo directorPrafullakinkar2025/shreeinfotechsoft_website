@@ -2,16 +2,16 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 // Database connection details
-// $servername = "localhost";
-// $username = "shreeinfotechsof";       // or your cPanel DB username
-// $password = ",oSjcFMm,Rg;";           // or your DB password
-// $database = "shreeinfotechsof_company_info";
-//local connection
 $servername = "localhost";
-$username = "root";       // or your cPanel DB username
-$password = "";           // or your DB password
+$username = "shreeinfotechsof";       // or your cPanel DB username
+$password = ",oSjcFMm,Rg;";           // or your DB password
 $database = "shreeinfotechsof_company_info";
-$port = 3306;
+//local connection
+// $servername = "localhost";
+// $username = "root";       // or your cPanel DB username
+// $password = "";           // or your DB password
+// $database = "shreeinfotechsof_company_info";
+// $port = 3306;
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
