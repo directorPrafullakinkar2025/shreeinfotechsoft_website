@@ -190,17 +190,17 @@
         <h2>Start Your Learning Journey Today!</h2>
         <form id="contactForm" method="POST" action="submit.php">
           <div class="row">
-            <input id="first_name" type="text" name="first_name" placeholder="First Name">
-            <input id="last_name" type="text" name="last_name" placeholder="Last Name">
+            <input id="first_name" type="text" name="first_name" placeholder="First Name" required>
+            <input id="last_name" type="text" name="last_name" placeholder="Last Name"required>
           </div>
           <div class="row">
             <!-- <span class="pin-no">+91</span>
           <input type="text" name="mobile_no" placeholder="Mobile No"> -->
           <input id="mobile_no" type="tel" name="mobile_no" maxlength="10" pattern="\d{10}" required>
           </div>
-          <input id="email" type="text" name="email" placeholder="Email-ID">
+          <input id="email" type="text" name="email" placeholder="Email-ID"required>
           <div class="row">
-            <select name="course" id="course">
+            <select name="course" id="course"required>
               <option value="">Choose Course</option>
               <option value="Java">Java Full Stack</option>
               <option value="MERN">MERN Full Stack</option>
@@ -209,13 +209,13 @@
               <option value="Javascript">Javascript</option>
               <option value="PHP">PHP</option>
             </select>
-            <select name="training_mode" id="training_mode">
+            <select name="training_mode" id="training_mode"required>
               <option value="">Select Mode of Training</option>
               <option value="online">Online</option>
               <option value="offline">Offline</option>
             </select>
           </div>
-          <textarea name="message" id="message" placeholder="Describe message here"></textarea>
+          <textarea name="message" id="message" placeholder="Describe message here"required></textarea>
           <button type="submit">Submit</button>
 
   <div id="errorMsg" style="color:red; margin-top:10px;"></div>
