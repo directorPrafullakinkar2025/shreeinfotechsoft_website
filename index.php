@@ -289,85 +289,6 @@
     </div>
   </footer>
 
-  <!-- intl-tel-input JS -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script> -->
-
-  <!-- <script>
-
-      const menuToggle = document.querySelector('.menu-toggle');
-  const navLink = document.querySelector('.nav-links');
-
-  menuToggle.addEventListener('click',()=>{
-    navLink.classList.toggle('active')
-  })
-
-    const phoneInputField = document.querySelector("#mobile_no");
-    const phoneInput = window.intlTelInput(phoneInputField, {
-      initialCountry: "in", // Default: India
-      preferredCountries: ["in", "us", "gb"], // top 3
-      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-
-
-
-document.getElementById("contactForm").addEventListener("submit", async function(e) {
-    e.preventDefault(); // stop normal form submission
-
-     let fullNumber = phoneInput.getNumber(); // e.g. +919876543210
-    // let mobile = document.getElementById("mobile").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let message = document.getElementById("message").value.trim();
-    let errorMsg = document.getElementById("errorMsg");
-    let successMsg = document.getElementById("successMsg");
-    errorMsg.textContent = "";
-    successMsg.textContent = "";
-
-    // ✅ Validate mobile number
-let mobilePattern = /^\+?[0-9]{10,15}$/;
-    if (!mobilePattern.test(fullNumber)) {
-        errorMsg.textContent = "Please enter a valid 10-digit mobile number.";
-        return;
-    }
-
-    // ✅ Validate email format
-    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
-    if (!emailPattern.test(email)) {
-        errorMsg.textContent = "Please enter a valid email address.";
-        return;
-    }
-
-    // ✅ Check message for bad words
-    const badWords = ["idiot", "stupid", "fool", "badword1", "badword2"];
-    let lowerMsg = message.toLowerCase();
-
-    for (let word of badWords) {
-        if (lowerMsg.includes(word)) {
-            errorMsg.textContent = "Message contains inappropriate words. Please remove them.";
-            return;
-        }
-    }
-
-    // ✅ Send data using fetch() to PHP
-    try {
-        let response = await fetch("submit.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({
-                mobile_no: fullNumber,
-                email: email,
-                message: message
-            })
-        });
-
-        let result = await response.text();
-        successMsg.textContent = result;
-        document.getElementById("contactForm").reset();
-
-    } catch (error) {
-        errorMsg.textContent = "Error sending data. Please try again.";
-    }
-});
-</script> -->
 <!-- intl-tel-input JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
@@ -428,9 +349,12 @@ document.getElementById("contactForm").addEventListener("submit", async function
     });
 
    // Redirect handled by PHP, no message needed
-window.location.href = "index.php";
+// // window.location.href = "index.php";
 
-    document.getElementById("contactForm").reset();
+//     document.getElementById("contactForm").reset();
+let result = await response.text();
+successMsg.innerHTML = result;  // SHOW RAW OUTPUT
+console.log(result);    
   } catch (error) {
     errorMsg.textContent = "Error sending data. Please try again.";
   }
