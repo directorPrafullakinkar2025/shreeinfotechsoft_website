@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Quiz</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      padding: 30px;
+    }
+
+    .top-menu {
+      max-width: 900px;
+      margin: auto;
+      margin-bottom: 20px;
+      background: #1e3a8a;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .top-menu .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .top-menu ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .top-menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .top-menu ul li a:hover {
+      color: #93c5fd;
+    }
+
+    .login-container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #1e3a8a;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 14px;
+      background: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .login-container button:hover {
+      background: #15803d;
+    }
+
+    #loginMessage {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    body {
+      background: #f4f7fb;
+      padding: 30px;
+    }
+
+    .quiz-container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .quiz-title {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #1e3a8a;
+      font-size: 36px;
+    }
+
+    .question-box {
+      margin-bottom: 25px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+
+    .question {
+      font-size: 20px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .options label {
+      display: block;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .options label:hover {
+      background: #e8f0ff;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      font-size: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .result-box {
+      margin-top: 30px;
+      padding: 25px;
+      background: #f0fdf4;
+      border: 2px solid #16a34a;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .result-box h2 {
+      margin-bottom: 15px;
+      color: #166534;
+    }
+
+    .result-box p {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+
+    .wrong {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Menu -->
+  <nav class="top-menu">
+    <div class="logo">Online Exam Portal</div>
+
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#quizForm">HTML Quiz</a></li>
+      <li><a href="#loginSection">Exam Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login Section -->
+  <div class="login-container" id="loginSection">
+
+    <h2>Student Exam Login</h2>
+
+    <input type="text" id="username" placeholder="Enter Username" />
+
+    <input type="password" id="password" placeholder="Enter Password" />
+
+    <button onclick="loginExam()">Login For Exam</button>
+
+    <p id="loginMessage"></p>
+
+  </div>
+
+  <div class="quiz-container">
+
+    <h1 class="quiz-title">HTML Quiz</h1>
+
+    <form id="quizForm">
+
+      <!-- Question 1 -->
+      <div class="question-box">
+        <div class="question">1. What does HTML stand for?</div>
+        <div class="options">
+          <label><input type="radio" name="q1" value="a"> Hyper Text Markup Language</label>
+          <label><input type="radio" name="q1" value="b"> High Transfer Machine Language</label>
+          <label><input type="radio" name="q1" value="c"> Hyperlinks Text Management Language</label>
+          <label><input type="radio" name="q1" value="d"> Home Tool Markup Language</label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question-box">
+        <div class="question">2. Which tag is used to create a hyperlink in HTML?</div>
+        <div class="options">
+          <label><input type="radio" name="q2" value="a"> &lt;link&gt;</label>
+          <label><input type="radio" name="q2" value="b"> &lt;a&gt;</label>
+          <label><input type="radio" name="q2" value="c"> &lt;href&gt;</label>
+          <label><input type="radio" name="q2" value="d"> &lt;url&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question-box">
+        <div class="question">3. Which HTML tag is used to display an image?</div>
+        <div class="options">
+          <label><input type="radio" name="q3" value="a"> &lt;image&gt;</label>
+          <label><input type="radio" name="q3" value="b"> &lt;picture&gt;</label>
+          <label><input type="radio" name="q3" value="c"> &lt;img&gt;</label>
+          <label><input type="radio" name="q3" value="d"> &lt;src&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question-box">
+        <div class="question">4. Which tag is used for the largest heading?</div>
+        <div class="options">
+          <label><input type="radio" name="q4" value="a"> &lt;h6&gt;</label>
+          <label><input type="radio" name="q4" value="b"> &lt;head&gt;</label>
+          <label><input type="radio" name="q4" value="c"> &lt;heading&gt;</label>
+          <label><input type="radio" name="q4" value="d"> &lt;h1&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question-box">
+        <div class="question">5. Which tag is used to create a line break?</div>
+        <div class="options">
+          <label><input type="radio" name="q5" value="a"> &lt;break&gt;</label>
+          <label><input type="radio" name="q5" value="b"> &lt;br&gt;</label>
+          <label><input type="radio" name="q5" value="c"> &lt;lb&gt;</label>
+          <label><input type="radio" name="q5" value="d"> &lt;hr&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 6 -->
+      <div class="question-box">
+        <div class="question">6. Which HTML tag creates an unordered list?</div>
+        <div class="options">
+          <label><input type="radio" name="q6" value="a"> &lt;ol&gt;</label>
+          <label><input type="radio" name="q6" value="b"> &lt;ul&gt;</label>
+          <label><input type="radio" name="q6" value="c"> &lt;li&gt;</label>
+          <label><input type="radio" name="q6" value="d"> &lt;list&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 7 -->
+      <div class="question-box">
+        <div class="question">7. Which attribute specifies the image path in HTML?</div>
+        <div class="options">
+          <label><input type="radio" name="q7" value="a"> href</label>
+          <label><input type="radio" name="q7" value="b"> link</label>
+          <label><input type="radio" name="q7" value="c"> src</label>
+          <label><input type="radio" name="q7" value="d"> alt</label>
+        </div>
+      </div>
+
+      <!-- Question 8 -->
+      <div class="question-box">
+        <div class="question">8. Which tag is used to create a table row?</div>
+        <div class="options">
+          <label><input type="radio" name="q8" value="a"> &lt;td&gt;</label>
+          <label><input type="radio" name="q8" value="b"> &lt;table&gt;</label>
+          <label><input type="radio" name="q8" value="c"> &lt;th&gt;</label>
+          <label><input type="radio" name="q8" value="d"> &lt;tr&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 9 -->
+      <div class="question-box">
+        <div class="question">9. Which HTML tag is used for inserting a paragraph?</div>
+        <div class="options">
+          <label><input type="radio" name="q9" value="a"> &lt;p&gt;</label>
+          <label><input type="radio" name="q9" value="b"> &lt;para&gt;</label>
+          <label><input type="radio" name="q9" value="c"> &lt;text&gt;</label>
+          <label><input type="radio" name="q9" value="d"> &lt;pg&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 10 -->
+      <div class="question-box">
+        <div class="question">10. Which tag is used to insert a horizontal line?</div>
+        <div class="options">
+          <label><input type="radio" name="q10" value="a"> &lt;line&gt;</label>
+          <label><input type="radio" name="q10" value="b"> &lt;hr&gt;</label>
+          <label><input type="radio" name="q10" value="c"> &lt;br&gt;</label>
+          <label><input type="radio" name="q10" value="d"> &lt;hline&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 11 -->
+      <div class="question-box">
+        <div class="question">11. Which tag is used to create a form in HTML?</div>
+        <div class="options">
+          <label><input type="radio" name="q11" value="a"> &lt;input&gt;</label>
+          <label><input type="radio" name="q11" value="b"> &lt;form&gt;</label>
+          <label><input type="radio" name="q11" value="c"> &lt;table&gt;</label>
+          <label><input type="radio" name="q11" value="d"> &lt;body&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 12 -->
+      <div class="question-box">
+        <div class="question">12. Which input type hides the password characters?</div>
+        <div class="options">
+          <label><input type="radio" name="q12" value="a"> text</label>
+          <label><input type="radio" name="q12" value="b"> hidden</label>
+          <label><input type="radio" name="q12" value="c"> password</label>
+          <label><input type="radio" name="q12" value="d"> secure</label>
+        </div>
+      </div>
+
+      <!-- Question 13 -->
+      <div class="question-box">
+        <div class="question">13. Which HTML tag is used to play video files?</div>
+        <div class="options">
+          <label><input type="radio" name="q13" value="a"> &lt;movie&gt;</label>
+          <label><input type="radio" name="q13" value="b"> &lt;video&gt;</label>
+          <label><input type="radio" name="q13" value="c"> &lt;media&gt;</label>
+          <label><input type="radio" name="q13" value="d"> &lt;mp4&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 14 -->
+      <div class="question-box">
+        <div class="question">14. Which tag is used to create a checkbox?</div>
+        <div class="options">
+          <label><input type="radio" name="q14" value="a"> radio</label>
+          <label><input type="radio" name="q14" value="b"> tick</label>
+          <label><input type="radio" name="q14" value="c"> input type="checkbox"</label>
+          <label><input type="radio" name="q14" value="d"> mark</label>
+        </div>
+      </div>
+
+      <!-- Question 15 -->
+      <div class="question-box">
+        <div class="question">15. Which HTML tag is used for creating a dropdown list?</div>
+        <div class="options">
+          <label><input type="radio" name="q15" value="a"> &lt;select&gt;</label>
+          <label><input type="radio" name="q15" value="b"> &lt;dropdown&gt;</label>
+          <label><input type="radio" name="q15" value="c"> &lt;list&gt;</label>
+          <label><input type="radio" name="q15" value="d"> &lt;optionlist&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 16 -->
+      <div class="question-box">
+        <div class="question">16. Which tag defines the title of a webpage?</div>
+        <div class="options">
+          <label><input type="radio" name="q16" value="a"> &lt;meta&gt;</label>
+          <label><input type="radio" name="q16" value="b"> &lt;title&gt;</label>
+          <label><input type="radio" name="q16" value="c"> &lt;head&gt;</label>
+          <label><input type="radio" name="q16" value="d"> &lt;body&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 17 -->
+      <div class="question-box">
+        <div class="question">17. Which HTML element is used for comments?</div>
+        <div class="options">
+          <label><input type="radio" name="q17" value="a"> // comment</label>
+          <label><input type="radio" name="q17" value="b"> &lt;!-- comment --&gt;</label>
+          <label><input type="radio" name="q17" value="c"> /* comment */</label>
+          <label><input type="radio" name="q17" value="d"> &lt;comment&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 18 -->
+      <div class="question-box">
+        <div class="question">18. Which tag is used to create a numbered list?</div>
+        <div class="options">
+          <label><input type="radio" name="q18" value="a"> &lt;ul&gt;</label>
+          <label><input type="radio" name="q18" value="b"> &lt;li&gt;</label>
+          <label><input type="radio" name="q18" value="c"> &lt;ol&gt;</label>
+          <label><input type="radio" name="q18" value="d"> &lt;list&gt;</label>
+        </div>
+      </div>
+
+      <!-- Question 19 -->
+      <div class="question-box">
+        <div class="question">19. Which attribute opens a link in a new tab?</div>
+        <div class="options">
+          <label><input type="radio" name="q19" value="a"> new</label>
+          <label><input type="radio" name="q19" value="b"> href</label>
+          <label><input type="radio" name="q19" value="c"> target="_blank"</label>
+          <label><input type="radio" name="q19" value="d"> open</label>
+        </div>
+      </div>
+
+      <!-- Question 20 -->
+      <div class="question-box">
+        <div class="question">20. Which HTML tag is used to insert audio?</div>
+        <div class="options">
+          <label><input type="radio" name="q20" value="a"> &lt;audio&gt;</label>
+          <label><input type="radio" name="q20" value="b"> &lt;sound&gt;</label>
+          <label><input type="radio" name="q20" value="c"> &lt;music&gt;</label>
+          <label><input type="radio" name="q20" value="d"> &lt;mp3&gt;</label>
+        </div>
+      </div>
+
+      <button type="button" class="submit-btn" onclick="calculateResult()"> class="submit-btn" onclick="calculateResult()">
+        Submit Quiz
+      </button>
+
+    </form>
+
+    <div class="result-box" id="resultBox">
+      <h2>Quiz Result</h2>
+      <p id="correctAns"></p>
+      <p id="wrongAns"></p>
+      <p id="totalMarks"></p>
+      <p id="percentage"></p>
+    </div>
+
+  </div>
+
+  <script>
+
+    function loginExam() {
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Demo Login
+      const demoUser = 'student';
+      const demoPass = '12345';
+
+      if (username === demoUser && password === demoPass) {
+
+        document.getElementById('loginMessage').innerHTML =
+          '<span style="color:green;">Login Successful! You can now attend the exam.</span>';
+
+        document.querySelector('.quiz-container').style.display = 'block';
+
+      } else {
+
+        document.getElementById('loginMessage').innerHTML =
+          '<span style="color:red;">Invalid Username or Password</span>';
+
+        document.querySelector('.quiz-container').style.display = 'none';
+      }
+    }
+
+    // Hide Quiz Before Login
+    window.onload = function() {
+      document.querySelector('.quiz-container').style.display = 'none';
+    }
+
+
+    function calculateResult() {
+
+      const answers = {
+        q1: 'a',
+        q2: 'b',
+        q3: 'c',
+        q4: 'd',
+        q5: 'b',
+        q6: 'b',
+        q7: 'c',
+        q8: 'd',
+        q9: 'a',
+        q10: 'b',
+        q11: 'b',
+        q12: 'c',
+        q13: 'b',
+        q14: 'c',
+        q15: 'a',
+        q16: 'b',
+        q17: 'b',
+        q18: 'c',
+        q19: 'c',
+        q20: 'a'
+      };
+
+      let correct = 0;
+      let wrong = 0;
+
+      // Each question = 5 marks
+      const marksPerQuestion = 5;
+
+      for (let key in answers) {
+
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+
+        if (selected) {
+          if (selected.value === answers[key]) {
+            correct++;
+          } else {
+            wrong++;
+          }
+        }
+      }
+
+      const totalQuestions = Object.keys(answers).length;
+      const totalMarks = correct * marksPerQuestion;
+      const maxMarks = totalQuestions * marksPerQuestion;
+      const percentage = ((totalMarks / maxMarks) * 100).toFixed(2);
+
+      document.getElementById('resultBox').style.display = 'block';
+
+      document.getElementById('correctAns').innerHTML =
+        `<span class="correct">Correct Answers:</span> ${correct}`;
+
+      document.getElementById('wrongAns').innerHTML =
+        `<span class="wrong">Wrong Answers:</span> ${wrong}`;
+
+      document.getElementById('totalMarks').innerHTML =
+        `<strong>Total Marks:</strong> ${totalMarks} / ${maxMarks}`;
+
+      document.getElementById('percentage').innerHTML =
+        `<strong>Percentage:</strong> ${percentage}%`;
+
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+
+  </script>
+
+</body>
+</html>

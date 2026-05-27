@@ -26,6 +26,7 @@
       <!-- <li><a href="">Attendance</a></li> -->
       <li><a href="#Project_info">About</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="exam_html_login.html">Exam login</a></li>
     </ul>
   </nav>
 
